@@ -11,7 +11,6 @@
                                 <div class="col-lg">
                                     <div class="p-5">
                                         <div class="text-center">
-
                                             <img src="<?= base_url('assets/logo1.png') ?>" width="100px">
                                             <h3>PT WIJAYA TRIUTAMA PLYWOOD INDUSTRI</h3>
                                             <hr>

@@ -34,13 +34,13 @@
     <!-- Page Wrapper -->
     <div id="wrapper">
       <!-- Sidebar -->
-      <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+      <ul class="navbar-nav bg-gradient-info sidebar sidebar-dark accordion" id="accordionSidebar">
         <!-- Sidebar - Brand -->
         <a class="sidebar-brand d-flex align-items-center justify-content-center" href="<?= base_url('admin') ?>">
           <div class="sidebar-brand-icon">
-            <img src="<?= base_url('assets/logo.png'); ?>" width="50" height="60" alt="Logo Pemda-Tapin">
+            <img src="<?= base_url('assets/logo1.png'); ?>" width="50" height="60" alt="Logo Pemda-Tapin">
           </div>
-          <div class="sidebar-brand-text mx-3">BKK SMK</div>
+          <div class="sidebar-brand-text mx-3">PT.WTPI</div>
         </a>
         <!-- Divider -->
         <hr class="sidebar-divider my-0">
@@ -57,12 +57,12 @@
         <li class="nav-item">
           <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
             <i class="fas fa-database"></i>
-            <span>Data Master</span>
+            <span>Data Parkir</span>
           </a>
           <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
-              <a class="collapse-item" href="<?= base_url('admin/jurusan') ?>">JURUSAN</a>
-              <a class="collapse-item" href="<?= base_url('admin/pkerja') ?>">Data Pencari Kerja</a>
+              <a class="collapse-item" href="<?= base_url('admin/p_masuk') ?>">Parkir Masuk</a>
+              <a class="collapse-item" href="<?= base_url('admin/p_keluar') ?>">Parkir Keluar</a>
             </div>
           </div>
         </li>
@@ -71,12 +71,11 @@
         <li class="nav-item">
           <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#Pengajuan" aria-expanded="true" aria-controls="Pengajuan">
             <i class="fas fa-database"></i>
-            <span>Lowongan Kerja</span>
+            <span>Laporan</span>
           </a>
           <div id="Pengajuan" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
-              <a class="collapse-item" href="<?= base_url('admin/cek_pengajuan') ?>">Buat Lowongan</a>
-              <a class="collapse-item" href="<?= base_url('admin/cek_pengajuan') ?>">Pengajuan Kerja</a>
+              <a class="collapse-item" href="<?= base_url('admin/Laporan') ?>">Laporan Parkir</a>
             </div>
           </div>
         </li>
