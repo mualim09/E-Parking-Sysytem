@@ -95,23 +95,23 @@ class Auth extends CI_Controller
 
     public function auth_admin()
     {
-        $this->form_validation->set_rules('nip', 'NIP Pegawai', 'required');
+        $this->form_validation->set_rules('username', 'username Pegawai', 'required');
         $this->form_validation->set_rules('password', 'Password', 'required');
         if ($this->form_validation->run() == FALSE) {
             $data['data'] = false;
 
             $data['judul'] = 'Login';
-            $this->load->view('auth/template/header', $data);
+            $this->load->view('auth/template_auth/header', $data);
             $this->load->view('auth/index', $data);
-            $this->load->view('auth/template/footer');
+            $this->load->view('auth/template_auth/footer');
         } else {
 
-            $nip = $this->input->post('nip');
+            $username = $this->input->post('username');
             $password =  md5($this->input->post('password'));
-            $cek = $this->auth_m->login($nip, $password);
+            $cek = $this->auth_m->login($username, $password);
             if ($cek == true) {
                 foreach ($cek as $row);
-                $this->session->set_userdata('nip', $row->nip);
+                $this->session->set_userdata('username', $row->username);
                 $this->session->set_userdata('nama_lengkap', $row->nama_lengkap);
                 $this->session->set_userdata('id_pegawai', $row->id_pegawai);
                 $this->session->set_userdata('level', $row->level);

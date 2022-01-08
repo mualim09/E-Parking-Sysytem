@@ -27,8 +27,8 @@ class Admin extends CI_Controller
         // $data['jml_pegawai'] = $this->pegawai_m->jumlah_pegawai();
         // $data['jml_bidang'] = $this->pegawai_m->jumlah_bidang();
         // $data['jml_absen'] = $this->pegawai_m->jumlah_absen();
-        $bulan1 = "1";
-        $bulan = "08";
+        // $bulan1 = "1";
+        // $bulan = "08";
         // $data['bulan1'] = $this->pegawai_m->jumlah_absen_bulan("01");
         // $data['bulan2'] = $this->pegawai_m->jumlah_absen_bulan("02");
         // $data['bulan3'] = $this->pegawai_m->jumlah_absen_bulan("03");
