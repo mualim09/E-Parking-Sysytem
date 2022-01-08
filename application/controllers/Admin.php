@@ -50,7 +50,7 @@ class Admin extends CI_Controller
     // -------------------- //
     public function p_masuk()
     {
-        $data['judul'] = 'Data Bidang';
+        $data['judul'] = 'Data Parkir Masuk';
         $data['nama'] = $this->session->userdata('nama_lengkap');
         $data['data'] = $this->parkir_m->get_all_parkir();
         $this->load->view('template/header', $data);
@@ -59,7 +59,7 @@ class Admin extends CI_Controller
     }
     public function tambah_parkir()
     {
-        $data['judul'] = 'Data Bidang';
+        $data['judul'] = 'Parkir Masuk';
         $data['nama'] = $this->session->userdata('nama_lengkap');
         $this->load->view('template/header', $data);
         $this->load->view('admin/parkir/input_parkir', $data);
@@ -81,7 +81,7 @@ class Admin extends CI_Controller
         $this->form_validation->set_rules('nama_jab', 'Bidang', 'required');
         if ($this->form_validation->run() == FALSE) {
             $data['data'] = $this->parkir_m->get_row_jab($id_bidang);
-            $data['judul'] = 'Data Bidang';
+            $data['judul'] = 'Parkir Keluar';
             $this->load->view('template/header', $data);
             $this->load->view('admin/parkir/edit_parkir', $data);
             $this->load->view('template/footer');
@@ -95,20 +95,45 @@ class Admin extends CI_Controller
         }
     }
 
-    public function proses_input_jab()
+    public function proses_input_p_masuk()
     {
-        $this->form_validation->set_rules('nama_jab', 'parkir', 'required');
+        $this->form_validation->set_rules('nama_tamu', 'parkir', 'required');
+        $this->form_validation->set_rules('no_pol', 'No polisi', 'required');
+        $this->form_validation->set_rules('jenis_kendaraan', 'Jenis Kendaraan', 'required');
+        $this->form_validation->set_rules('bertamu_dengan', 'Bertemu Dengan', 'required');
+        $this->form_validation->set_rules('kepentingan', 'Bertemu Dengan', 'required');
         if ($this->form_validation->run() == FALSE) {
-            $data['judul'] = 'Data Bidang';
+            $data['judul'] = 'Parkir Masuk';
             $this->load->view('template/header', $data);
             $this->load->view('admin/parkir/input_parkir', $data);
             $this->load->view('template/footer');
         } else {
+            $config['upload_path']   = './assets/foto/';
+            $config['allowed_types'] = 'gif|jpg|png|jpeg';
+            //$config['max_size']      = 100; 
+            //$config['max_width']     = 1024; 
+            //$config['max_height']    = 768;  
+
+            $this->load->library('upload', $config);
+            // script upload file 1
+            $this->upload->do_upload('cam_masuk');
+            $file1 = $this->upload->data();
+            $this->upload->do_upload('k_identitas');
+            $file2 = $this->upload->data();
             $data = array(
-                'nama_jab' => $this->input->post('nama_jab')
+                'nama_tamu' => $this->input->post('nama_tamu'),
+                'no_pol' => $this->input->post('no_pol'),
+                'jenis_kendaraan' => $this->input->post('jenis_kendaraan'),
+                'bertamu_dengan' => $this->input->post('bertamu_dengan'),
+                'kepentingan' => $this->input->post('kepentingan'),
+                'nama_tamu' => $this->input->post('nama_tamu'),
+                'tgl_masuk' => date('Y-m-d'),
+                'cam_masuk' => $file1["orig_name"],
+                'cam_keluar' => "false",
+                'k_identitas' => $file2["orig_name"],
             );
             $this->db->insert('parkir', $data);
-            return redirect('admin/parkir');
+            return redirect('admin/p_masuk');
         }
     }
 

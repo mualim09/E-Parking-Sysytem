@@ -4,7 +4,7 @@
     <!-- Page Heading -->
     <div class="card">
         <div class="card-header">
-            <a href="<?= base_url('admin/jabatan') ?>"><i class="fas fa-arrow-circle-left"> Kembali</i></a>
+            <a href="<?= base_url('admin') ?>"><i class="fas fa-arrow-circle-left"> Kembali</i></a>
         </div>
         <div class="card-body">
             <div class="row">
