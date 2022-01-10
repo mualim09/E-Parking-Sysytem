@@ -37,12 +37,11 @@
                                 <td><?= $x->bertamu_dengan; ?></td>
                                 <td><?= $x->kepentingan; ?></td>
                                 <td><?= $x->tgl_masuk; ?></td>
-                                <td><img src=<?= base_url('assets/foto/' . $x->cam_masuk) ?> alt="foto" sizes=10px></td>
-                                <td><img src=<?= base_url('assets/foto/' . $x->k_identitas) ?> alt="foto" sizes=10px></td>
-
+                                <td><img src="<?= base_url('assets/foto/' . $x->cam_masuk) ?>" width="100" height="100"></td>
+                                <td><img src="<?= base_url('assets/foto/' . $x->k_identitas) ?>" width="100" height="100"></td>
                                 <td>
                                     <a href=" <?= base_url('admin/edit_jabatan/') . $x->id_parkir; ?>" class="btn btn-primary">Edit</a>
-                                    <a href="<?= base_url('admin/hapus_jabatan/') . $x->id_parkir; ?>" onclick="return confirm('Yakin Hapus?')" class="btn btn-danger">Hapus</a>
+                                    <a href="<?= base_url('admin/hapus_parkir/') . $x->id_parkir; ?>" onclick="return confirm('Yakin Hapus?')" class="btn btn-danger">Hapus</a>
                                 </td>
                             </tr>
                         <?php } ?>

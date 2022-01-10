@@ -57,6 +57,15 @@ class Admin extends CI_Controller
         $this->load->view('admin/parkir/data_parkir', $data);
         $this->load->view('template/footer');
     }
+    public function p_masuk_keluar()
+    {
+        $data['judul'] = 'Data Parkir Masuk';
+        $data['nama'] = $this->session->userdata('nama_lengkap');
+        $data['data'] = $this->parkir_m->get_all_parkir();
+        $this->load->view('template/header', $data);
+        $this->load->view('admin/parkir/data_parkir', $data);
+        $this->load->view('template/footer');
+    }
     public function tambah_parkir()
     {
         $data['judul'] = 'Parkir Masuk';
@@ -118,6 +127,7 @@ class Admin extends CI_Controller
             // script upload file 1
             $this->upload->do_upload('cam_masuk');
             $file1 = $this->upload->data();
+
             $this->upload->do_upload('k_identitas');
             $file2 = $this->upload->data();
             $data = array(
@@ -137,11 +147,11 @@ class Admin extends CI_Controller
         }
     }
 
-    public function hapus_parkir($id_jab)
+    public function hapus_parkir($id_parkir)
     {
-        $this->db->where('id_jab', $id_jab);
+        $this->db->where('id_parkir', $id_parkir);
         $this->db->delete('parkir');
-        return redirect('admin/parkir');
+        return redirect('admin/p_masuk');
     }
 }
 
