@@ -57,12 +57,13 @@
         <li class="nav-item">
           <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
             <i class="fas fa-database"></i>
-            <span>Data Parkir</span>
+            <span>managemen Parkir</span>
           </a>
           <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
               <a class="collapse-item" href="<?= base_url('admin/p_masuk') ?>">Parkir Masuk</a>
-              <a class="collapse-item" href="<?= base_url('admin/p_keluar') ?>">Parkir Keluar</a>
+              <a class="collapse-item" href="<?= base_url('admin/akun') ?>">Buat Akun</a>
+              <a class="collapse-item" href="<?= base_url('admin/data_akun') ?>">Data Akun</a>
             </div>
           </div>
         </li>

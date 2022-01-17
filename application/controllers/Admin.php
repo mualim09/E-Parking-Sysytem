@@ -9,23 +9,33 @@ class Admin extends CI_Controller
         parent::__construct();
         $this->load->library('form_validation');
         $this->load->model('parkir_m');
+        $this->load->model('akun_model');
 
 
-        // $level_akun = $this->session->userdata('level');
-        // if ($level_akun != "admin") {
-        //     return redirect('auth');
-        // }
+        $level_akun = $this->session->userdata('level');
+        if ($level_akun != "admin") {
+            return redirect('auth');
+        }
     }
 
     public function index()
     {
-        $data['level_akun'] = 'kepala_gs';
         $data['nama'] = $this->session->userdata('nama_lengkap');
         $data['data'] = false;
         $data['judul'] = 'Dashboard';
 
         $this->load->view('template/header', $data);
         $this->load->view('admin/index', $data);
+        $this->load->view('template/footer', $data);
+    }
+    public function data_akun()
+    {
+        $data['nama'] = $this->session->userdata('nama_lengkap');
+        $data['data'] = $this->akun_model->data_akun();
+        $data['judul'] = 'Dashboard';
+
+        $this->load->view('template/header', $data);
+        $this->load->view('admin/parkir/data_akun', $data);
         $this->load->view('template/footer', $data);
     }
     // parkir
@@ -38,6 +48,27 @@ class Admin extends CI_Controller
         $this->load->view('template/header', $data);
         $this->load->view('admin/parkir/data_parkir', $data);
         $this->load->view('template/footer');
+    }
+    public function akun()
+    {
+        $data['judul'] = 'Data Parkir Masuk';
+        $data['nama'] = $this->session->userdata('nama_lengkap');
+        $data['data'] = $this->parkir_m->get_all_parkir();
+        $this->load->view('template/header', $data);
+        $this->load->view('admin/parkir/akun', $data);
+        $this->load->view('template/footer');
+    }
+    public function simpan_akun()
+    {
+        $data = array(
+
+            'username' =>  $this->input->post('username'),
+            'password' => md5($this->input->post('password')),
+        );
+
+
+        $this->db->insert('akun', $data);
+        return redirect('admin/akun');
     }
     public function laporan_parkir()
     {
@@ -176,6 +207,12 @@ class Admin extends CI_Controller
         $this->db->where('id_parkir', $id_parkir);
         $this->db->delete('parkir');
         return redirect('admin/p_masuk');
+    }
+    public function hapus_akun($id_akun)
+    {
+        $this->db->where('id_akun', $id_akun);
+        $this->db->delete('akun');
+        return redirect('admin/data_akun');
     }
 }
 
