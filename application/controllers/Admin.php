@@ -57,6 +57,48 @@ class Admin extends CI_Controller
         $this->load->view('admin/parkir/data_parkir', $data);
         $this->load->view('template/footer');
     }
+    public function laporan_parkir()
+    {
+        $data['judul'] = 'Data Parkir';
+        $data['nama'] = $this->session->userdata('nama_lengkap');
+        $data['data'] = $this->parkir_m->get_all_parkir();
+        $this->load->view('template/header', $data);
+        $this->load->view('admin/parkir/laporan_parkir', $data);
+        $this->load->view('template/footer');
+    }
+    public function parkir_keluar($id_parkir)
+    {
+        $data['data'] = $this->parkir_m->get_row($id_parkir);
+        $data['judul'] = 'Data Parkir Masuk';
+        $data['nama'] = $this->session->userdata('nama_lengkap');
+
+        $this->load->view('template/header', $data);
+        $this->load->view('admin/parkir/parkir_keluar', $data);
+        $this->load->view('template/footer');
+    }
+    public function proses_update_p_keluar($id_parkir)
+    {
+        $config['upload_path']   = './assets/foto/';
+        $config['allowed_types'] = 'gif|jpg|png|jpeg';
+        //$config['max_size']      = 100; 
+        //$config['max_width']     = 1024; 
+        //$config['max_height']    = 768;  
+
+        $this->load->library('upload', $config);
+        // script upload file 1
+        $this->upload->do_upload('cam_keluar');
+        $file1 = $this->upload->data();
+
+
+        $data = array(
+
+            'tgl_keluar' => date('Y-m-d'),
+            'cam_keluar' => $file1["orig_name"],
+        );
+        $this->db->where('id_parkir', $id_parkir);
+        $this->db->update('parkir', $data);
+        return redirect('admin/p_masuk');
+    }
     public function p_masuk_keluar()
     {
         $data['judul'] = 'Data Parkir Masuk';
@@ -139,7 +181,7 @@ class Admin extends CI_Controller
                 'nama_tamu' => $this->input->post('nama_tamu'),
                 'tgl_masuk' => date('Y-m-d'),
                 'cam_masuk' => $file1["orig_name"],
-                'cam_keluar' => "false",
+                'cam_keluar' => "",
                 'k_identitas' => $file2["orig_name"],
             );
             $this->db->insert('parkir', $data);

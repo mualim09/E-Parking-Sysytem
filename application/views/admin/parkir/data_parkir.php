@@ -20,7 +20,9 @@
                             <th>Bertemu Dengan</th>
                             <th>Kepentingan</th>
                             <th>Tanggal Masuk</th>
-                            <th>Masuk</th>
+                            <th>Foto Masuk</th>
+                            <th>Tanggal Keluar</th>
+                            <th>Foto Keluar</th>
                             <th>Identitas</th>
                             <th>Aksi</th>
                         </tr>
@@ -38,9 +40,26 @@
                                 <td><?= $x->kepentingan; ?></td>
                                 <td><?= $x->tgl_masuk; ?></td>
                                 <td><img src="<?= base_url('assets/foto/' . $x->cam_masuk) ?>" width="100" height="100"></td>
+
+                                <td><?php if ($x->tgl_keluar == false) {
+                                        echo "Belum Keluar";
+                                    } else {
+                                        echo $x->tgl_keluar;
+                                    } ?></td>
+                                <td><?php if ($x->cam_keluar == false) {
+                                        echo "Belum Keluar";
+                                    } else { ?>
+                                        <img src="<?= base_url('assets/foto/' . $x->cam_keluar) ?>" width="100" height="100">
+
+                                    <?php      } ?>
+                                </td>
                                 <td><img src="<?= base_url('assets/foto/' . $x->k_identitas) ?>" width="100" height="100"></td>
+
                                 <td>
-                                    <a href=" <?= base_url('admin/edit_jabatan/') . $x->id_parkir; ?>" class="btn btn-primary">Edit</a>
+                                    <?php if ($x->tgl_keluar == true) {
+                                    } else { ?>
+                                        <a href=" <?= base_url('admin/parkir_keluar/') . $x->id_parkir; ?>" class="btn btn-primary">Keluar</a>
+                                    <?php } ?>
                                     <a href="<?= base_url('admin/hapus_parkir/') . $x->id_parkir; ?>" onclick="return confirm('Yakin Hapus?')" class="btn btn-danger">Hapus</a>
                                 </td>
                             </tr>

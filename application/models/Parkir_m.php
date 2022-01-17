@@ -15,6 +15,12 @@ class Parkir_m extends CI_Model
         $this->db->where('cam_keluar', "false");
         return $this->db->get('parkir')->result();
     }
+
+    function get_row($id_parkir)
+    {
+        $this->db->where('id_parkir', $id_parkir);
+        return $this->db->get('parkir')->row();
+    }
 }
 
 /* End of file Parkir_m.php */

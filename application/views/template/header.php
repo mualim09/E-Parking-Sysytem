@@ -8,7 +8,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="author" content="">
-  <link rel="shortcut icon" href=" <?= base_url('assets') ?>/favicon.ico">
+  <link rel="shortcut icon" href=" <?= base_url('assets') ?>/favicon1.ico">
   <title><?= $judul; ?></title>
 
   <!-- Custom fonts for this template-->
@@ -75,7 +75,7 @@
           </a>
           <div id="Pengajuan" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
-              <a class="collapse-item" href="<?= base_url('admin/Laporan') ?>">Laporan Parkir</a>
+              <a class="collapse-item" href="<?= base_url('admin/laporan_parkir') ?>">Laporan Parkir</a>
             </div>
           </div>
         </li>
